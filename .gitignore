@@ -7,6 +7,7 @@ api/.env
 api/logs/
 api/*.log
 api/logs/**/*.log
+api/.env
 
 # Frontend Client (React)
 client/node_modules/
@@ -55,3 +56,5 @@ out/
 
 # Optional: Ignore document files
 *.docx
+ex
+zip_files/
