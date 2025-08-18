@@ -216,3 +216,4 @@ curl -H "Authorization: Bearer DevOpsShack123" http://myapp-backend-env.eba-xxxx
 
 **Outcome:** React frontend calls backend API successfully, backend connects to MySQL RDS, full end-to-end deployment achieved.
 
+![alt text](image.png)
