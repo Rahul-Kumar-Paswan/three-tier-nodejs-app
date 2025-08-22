@@ -3,15 +3,21 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Switching to backend folder..."
+      - echo "Installing backend dependencies..."
       - cd api
-      - npm install
+      - npm install --production
   build:
     commands:
-      - echo "Zipping backend source for Elastic Beanstalk..."
+      - echo "Preparing backend deployment package..."
       - cd ..
-      - zip -r backend.zip api
-
+      # Move contents of api/ (not the folder itself) into bundle/
+      - mkdir -p bundle
+      - cp -r api/* bundle/
+      - cp -r api/.* bundle/ || true
+      # Procfile (important for Elastic Beanstalk Node.js platform)
+      - echo "web: node app.js" > bundle/Procfile
+      - cd bundle
+      - zip -r ../backend.zip .
 artifacts:
   files:
     - backend.zip
