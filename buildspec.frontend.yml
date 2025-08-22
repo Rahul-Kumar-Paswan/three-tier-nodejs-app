@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Switching to frontend folder..."
+      - cd client
+      - npm install
+  build:
+    commands:
+      - echo "Building React frontend..."
+      - npm run build
+      - echo "Preparing deployment artifact..."
+      - cd ..
+      - zip -r frontend.zip client
+
+artifacts:
+  files:
+    - frontend.zip

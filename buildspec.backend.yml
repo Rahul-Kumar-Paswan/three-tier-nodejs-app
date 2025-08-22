@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Switching to backend folder..."
+      - cd api
+      - npm install
+  build:
+    commands:
+      - echo "Zipping backend source for Elastic Beanstalk..."
+      - cd ..
+      - zip -r backend.zip api
+
+artifacts:
+  files:
+    - backend.zip
