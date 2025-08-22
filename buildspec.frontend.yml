@@ -8,17 +8,19 @@ phases:
       - npm install
   build:
     commands:
-      - echo "Building React app..."
+      - echo "Building React frontend..."
       - npm run build
       - cd ..
-      - echo "Preparing Dockerized frontend package..."
+      - echo "Preparing Dockerized frontend deployment package..."
+      # create bundle folder
       - mkdir -p bundle
-      # Copy Dockerfile and configs
-      - cp Dockerfile bundle/
-      - cp default.conf bundle/
-      - cp env.sh bundle/
-      # Copy built React files
+      # copy Dockerfile and configs from client/
+      - cp client/Dockerfile bundle/
+      - cp client/default.conf bundle/
+      - cp client/env.sh bundle/
+      # copy build output
       - cp -r client/build bundle/build
+      # zip bundle folder contents for EB
       - cd bundle
       - zip -r ../frontend.zip .
 artifacts:
